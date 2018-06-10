@@ -14,4 +14,4 @@ const MainApp = ()=>(
     </Provider>
 )
 
-AppRegistry.registerComponent('MyReactRedux', () => App);
+AppRegistry.registerComponent('MyReactRedux', () => MainApp);

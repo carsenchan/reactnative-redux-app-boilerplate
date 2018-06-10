@@ -1,4 +1,5 @@
 import {FETCHING_DATA, FETCHING_DATA_SUCCESS, FETCHING_DATA_FAIL} from './constants'
+import apiCall from './api'
 
 export const getData = ()=>({type: FETCHING_DATA})
 
@@ -12,4 +13,11 @@ export const getDataFail = () =>({
 
 })
 
-export const fetchData = ()=>{}
+export const fetchData = ()=>{
+    return (dispatch)=>{
+        dispatch(getData())
+        apiCall()
+        .then((data)=>{dispatch(getDataDone(data))})
+        .catch((error)=>{dispatch(getDataFail())})
+    }
+}

@@ -8,6 +8,6 @@ export default apiCall = ()=>{
     return new Promise((resolve, reject)=>{
         setTimeout(()=>{
             resolve(fakeData)
-        },3000)
+        },300)
     })
 }

@@ -1,5 +1,5 @@
 import {FETCHING_DATA, FETCHING_DATA_SUCCESS, FETCHING_DATA_FAIL} from '../constants'
-import { getDefaultSettings } from 'http2';
+
 
 const initState = {
     data:[],

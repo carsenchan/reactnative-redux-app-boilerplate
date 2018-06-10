@@ -19,14 +19,27 @@ import {fetchData} from './actions'
 let styles
 
 const App = (props) =>{
-  const {container, text, button, buttonText} = styles
-
+  const {container, text, button, buttonText, mainContainer} = styles
+  console.log(props)
   return (
     <View style={container}>
       <Text style={text}>Redux Example</Text>
-      <TouchableHighlight style={button}>
+      <TouchableHighlight style={button} onPress={()=>props.fetchData()}>
         <Text style={buttonText}>Fetch Data</Text>
       </TouchableHighlight>
+      <View style={mainContainer}>
+        {props.appData.isFetching && <Text>Loading...</Text>}
+        {
+          props.appData.data.length?(
+            props.appData.data.map((course, index)=>{
+              return(<View key={index}>
+                <Text>{course.id}</Text>
+                <Text>{course.name}</Text>
+              </View>)
+            })
+          ):<View/>
+        }
+      </View>
     </View>
   )
 }
@@ -37,27 +50,30 @@ styles = StyleSheet.create({
     flexDirection: 'column',
   },
   text: {
-    fontSize: '1.5rem',
     textAlign: 'center'
   },
   button: {
     justifyContent: 'center',
-    color: '#9293ab'
+    backgroundColor: '#023aba'
   },
   buttonText: {
     color: '#fff'
+  },
+  mainContainer: {
+    margin: 10
   }
 })
 
 const mapStateToProps = (state)=>{
+  console.log(state)
   return({
-    appData: state.appData
+    appData: state.testState
   })
 }
 
 const mapDispatchToProps = (dispatch)=>{
   return({
-    fetchData: dispatch(fetchData())
+    fetchData: ()=>dispatch(fetchData())
   })
 }
 
